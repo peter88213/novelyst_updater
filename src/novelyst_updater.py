@@ -1,8 +1,8 @@
-"""Plugin template for novelyst.
+"""An update checker plugin for novelyst.
 
 Requires Python 3.6+
 Copyright (c) 2023 Peter Triesberger
-For further information see https://github.com/peter88213/novelyst_plugin
+For further information see https://github.com/peter88213/novelyst_updater
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import sys
@@ -21,7 +21,7 @@ except:
     # Fallback for old Windows versions.
     CURRENT_LANGUAGE = locale.getdefaultlocale()[0][:2]
 try:
-    t = gettext.translation('novelyst_plugin', LOCALE_PATH, languages=[CURRENT_LANGUAGE])
+    t = gettext.translation('novelyst_updater', LOCALE_PATH, languages=[CURRENT_LANGUAGE])
     _ = t.gettext
 except:
 
@@ -38,8 +38,8 @@ class Plugin(PluginBase):
     VERSION = '@release'
     NOVELYST_API = '4.30'
     DESCRIPTION = 'Plugin template'
-    URL = 'https://peter88213.github.io/novelyst_plugin'
-    _HELP_URL = 'https://peter88213.github.io/novelyst_plugin/usage'
+    URL = 'https://peter88213.github.io/novelyst_updater'
+    _HELP_URL = 'https://peter88213.github.io/novelyst_updater/usage'
 
     def install(self, ui):
         """Install the plugin and extend the novelyst user interface.
@@ -50,5 +50,5 @@ class Plugin(PluginBase):
         self._ui = ui
 
         # Add an entry to the Help menu.
-        self._ui.helpMenu.add_command(label=_('novelyst_plugin Online help'), command=lambda: webbrowser.open(self._HELP_URL))
+        self._ui.helpMenu.add_command(label=_('novelyst_updater Online help'), command=lambda: webbrowser.open(self._HELP_URL))
 
