@@ -2,7 +2,7 @@
 
 --- 
 
-A [novelyst](https://peter88213.github.io/novelyst/) plugin. 
+A [novelyst](https://peter88213.github.io/novelyst/) plugin providing an *on-demand* update checker for the *novelyst* program and the installed plugins. 
 
 ---
 
