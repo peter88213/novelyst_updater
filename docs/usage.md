@@ -26,6 +26,12 @@ If [novelyst](https://peter88213.github.io/novelyst/) is installed, the setup sc
     - **Cancel** cancels the update check.
 - If no update is found, a message pops up at the end.
 
+### Important
+
+The *novelyst_updater* plugin only initiates the download process via the system web browser. 
+If a download directory is preset, all zip files with the downloaded releases will end up there. 
+You then perform the actual installation manually as usual.
+
 ---
 
 # License
