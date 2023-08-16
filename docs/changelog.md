@@ -23,7 +23,7 @@ Compatibility: novelyst v4.36 API
 ### v0.2.0
 
 - Check novelyst and installed plugins for updates.
-- Allow the user to cancel the update ckeck.
+- Allow the user to cancel the update check.
 
 Compatibility: novelyst v4.36 API
 

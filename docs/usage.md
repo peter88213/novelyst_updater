@@ -19,7 +19,7 @@ If [novelyst](https://peter88213.github.io/novelyst/) is installed, the setup sc
 
 ## Launch the program
 
-- Open the update ckecker from the main menu: **Tools > Check for updates**.
+- Open the update checker from the main menu: **Tools > Check for updates**.
 - If an update is found, a message pops up. You can choose:
     - **Yes** starts your web browser with the update URL.
     - **No** skips this update.
