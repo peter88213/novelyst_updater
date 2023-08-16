@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.1.0\n"
-"POT-Creation-Date: 2023-08-16 14:06:20\n"
+"Project-Id-Version: 0.2.0\n"
+"POT-Creation-Date: 2023-08-16 19:05:20\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -20,14 +20,14 @@ msgstr ""
 msgid "Check for updates"
 msgstr ""
 
+msgid "No online update information for novelyst found."
+msgstr ""
+
 msgid "No updates available."
 msgstr ""
 
-msgid "Start your webbrowser for download?"
+msgid "Start your web browser for download?"
 msgstr ""
 
 msgid "novelyst_updater Online help"
-msgstr ""
-
-msgid "unknown"
 msgstr ""

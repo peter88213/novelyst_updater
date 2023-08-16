@@ -77,7 +77,12 @@ class Plugin:
         found = False
 
         # Check novelyst.
-        majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info('https://github.com/peter88213/novelyst/raw/main/VERSION')
+        try:
+            majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info('novelyst')
+        except:
+            messagebox.showerror(_('Check for updates'), _('No online update information for novelyst found.'))
+            return
+
         try:
             if self._update_available((majorVersion, minorVersion, patchlevel),
                                      (self._ui.plugins.majorVersion, self._ui.plugins.minorVersion, self._ui.plugins.patchlevel)):
@@ -85,16 +90,21 @@ class Plugin:
                 found = True
 
             # Check installed plugins.
-            for moduleName in self._ui.plugins:
-                print(moduleName)
-                majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(f'https://github.com/peter88213/{moduleName}/raw/main/VERSION')
-                print(majorVersion, minorVersion, patchlevel)
+            for repoName in self._ui.plugins:
                 try:
-                    version = self._ui.plugins[moduleName].VERSION
-                except:
-                    version = _('unknown')
-                print(version)
+                    # Latest version
+                    majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
+                    latest = (majorVersion, minorVersion, patchlevel)
 
+                    # Current version
+                    majorVersion, minorVersion, patchlevel = self._ui.plugins[repoName].VERSION.split('.')
+                    current = (int(majorVersion), int(minorVersion), int(patchlevel))
+                except:
+                    continue
+                else:
+                    if self._update_available(latest, current):
+                        self._download_update(repoName, downloadUrl)
+                        found = True
             if not found:
                 messagebox.showinfo(_('Check for updates'), _('No updates available.'))
         except CancelChecking:
@@ -120,21 +130,17 @@ class Plugin:
             # user pressed the "Cancel" button
             raise CancelChecking
 
-    def _get_version_info(self, versionUrl):
+    def _get_version_info(self, repoName):
         """Return version information and download URL stored in a repository's VERSION file.
         
         Positional arguments:
-            versionUrl: str -- URL of the repository's VERSION file.
+            repoName: str -- The repository's name.
         
-        Return major version number, minor version number, patch level, and download URL.
-        
+        Return major version number, minor version number, patch level, and download URL.        
         """
-        try:
-            data = urlopen(versionUrl)
-        except:
-            return None, None, None, None
-
-        downloadLink = None
+        versionUrl = f'https://github.com/peter88213/{repoName}/raw/main/VERSION'
+        data = urlopen(versionUrl)
+        downloadUrl = None
         version = None
         lines = data.read().decode('utf-8').split('\n')
         for line in lines:
@@ -147,13 +153,9 @@ class Plugin:
                 if key == 'version':
                     version = value.strip()
                 elif key == 'download_link':
-                    downloadLink = value.strip()
-        try:
-            majorVersion, minorVersion, patchlevel = version.split('.')
-        except:
-            return None, None, None, None
-
-        return int(majorVersion), int(minorVersion), int(patchlevel), downloadLink
+                    downloadUrl = value.strip()
+        majorVersion, minorVersion, patchlevel = version.split('.')
+        return int(majorVersion), int(minorVersion), int(patchlevel), downloadUrl
 
     def _update_available(self, latest, current):
         """Return True, if the latest version number is greater than the current one."""

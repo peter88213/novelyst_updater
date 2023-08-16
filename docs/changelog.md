@@ -5,6 +5,13 @@
 ## Changelog
 
 
+### v0.2.0
+
+- Check novelyst and installed plugins for updates.
+- Allow the user to cancel the update ckeck.
+
+Compatibility: novelyst v4.36 API
+
 ### v0.1.0
 
 - Check novelyst for updates.
