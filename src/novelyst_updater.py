@@ -4,14 +4,25 @@ Requires Python 3.6+
 Copyright (c) 2023 Peter Triesberger
 For further information see https://github.com/peter88213/novelyst_updater
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
 """
 import sys
 import os
-import tkinter as tk
+from tkinter import messagebox
 import locale
 import gettext
+from urllib.request import urlopen
 import webbrowser
-from novelystlib.plugin.plugin_base import PluginBase
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -26,17 +37,18 @@ try:
 except:
 
     def _(message):
+
         return message
 
 
-class Plugin(PluginBase):
+class Plugin:
     """Template plugin class.
     
     Public methods:
         install(ui) -- Install the plugin and extend the novelyst user interface.
     """
     VERSION = '@release'
-    NOVELYST_API = '4.30'
+    NOVELYST_API = '4.36'
     DESCRIPTION = 'Plugin template'
     URL = 'https://peter88213.github.io/novelyst_updater'
     _HELP_URL = 'https://peter88213.github.io/novelyst_updater/usage'
@@ -51,4 +63,82 @@ class Plugin(PluginBase):
 
         # Add an entry to the Help menu.
         self._ui.helpMenu.add_command(label=_('novelyst_updater Online help'), command=lambda: webbrowser.open(self._HELP_URL))
+
+        # Add an entry to the Tools menu.
+        self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self._check_for_updates)
+
+    def _check_for_updates(self):
+        found = False
+
+        # Check novelyst.
+        majorVersion, minorVersion, patchlevel, downloadLink = self._get_latest_version('https://github.com/peter88213/novelyst/raw/main/VERSION')
+        if self._update_available((majorVersion, minorVersion, patchlevel),
+                                 (self._ui.plugins.majorVersion, self._ui.plugins.minorVersion, self._ui.plugins.patchlevel)):
+            self._download_update('novelyst', downloadLink)
+            found = True
+
+        # Check installed plugins.
+        for moduleName in self._ui.plugins:
+            print(moduleName)
+            majorVersion, minorVersion, patchlevel, downloadLink = self._get_latest_version(f'https://github.com/peter88213/{moduleName}/raw/main/VERSION')
+            print(majorVersion, minorVersion, patchlevel)
+            try:
+                version = self._ui.plugins[moduleName].VERSION
+            except:
+                version = _('unknown')
+            print(version)
+
+        if not found:
+            messagebox.showinfo(_('Check for updates'), _('No updates available.'))
+
+    def _download_update(self, module, url):
+        text = f'{_("An update is available for")} {module}. {_("Start your webbrowser for download?")}'
+        if messagebox.askyesno(_('Check for updates'), text):
+            webbrowser.open(url)
+
+    def _get_latest_version(self, url):
+        try:
+            data = urlopen(url)
+        except:
+            return None, None, None, None
+
+        downloadLink = None
+        version = None
+        majorVersion = None
+        minorVersion = None
+        patchlevel = None
+        lines = data.read().decode('utf-8').split('\n')
+        for line in lines:
+            try:
+                key, value = line.split('=')
+            except ValueError:
+                pass
+            else:
+                key = key.strip()
+                if key == 'version':
+                    version = value.strip()
+                elif key == 'download_link':
+                    downloadLink = value.strip()
+        try:
+            majorVersion, minorVersion, patchlevel = version.split('.')
+        except:
+            return None, None, None, None
+
+        return int(majorVersion), int(minorVersion), int(patchlevel), downloadLink
+
+    def _update_available(self, latest, current):
+        print(latest)
+        print(current)
+        if latest[0] > current[0]:
+            return True
+
+        if latest[0] == current[0]:
+            if latest[1] > current[1]:
+                return True
+
+            if latest[1] == current[1]:
+                if latest[2] > current[2]:
+                    return True
+
+        return False
 

@@ -7,6 +7,6 @@
 
 ### v0.1.0
 
-- Release under the GPLv3 license.
+- Check novelyst for updates.
 
-Compatibility: novelyst v4.28 API
+Compatibility: novelyst v4.36 API
