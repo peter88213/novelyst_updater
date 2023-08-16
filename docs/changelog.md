@@ -5,6 +5,15 @@
 ## Changelog
 
 
+### v0.2.2
+
+- Modify message (#1)
+- Refactor.
+- Provide instructions for use.
+- Update documentation.
+
+Compatibility: novelyst v4.36 API
+
 ### v0.2.1
 
 - Add debugging code.

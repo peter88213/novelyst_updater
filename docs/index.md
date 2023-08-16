@@ -2,7 +2,7 @@
 
 The [novelyst](https://peter88213.github.io/novelyst/) Python program helps authors organize novels.  
 
-*novelyst_updater* is a plugin providing . 
+*novelyst_updater* is a plugin providing an update ckecker fpr the *novelyst* program and the installed plugins. 
 
 ![Screenshot](Screenshots/screen01.png)
 
@@ -12,9 +12,9 @@ The [novelyst](https://peter88213.github.io/novelyst/) Python program helps auth
 
 ## Download and install
 
-[Download the latest release (version 0.2.1)](https://github.com/peter88213/novelyst_updater/raw/main/dist/novelyst_updater_v0.2.1.zip)
+[Download the latest release (version 0.2.2)](https://github.com/peter88213/novelyst_updater/raw/main/dist/novelyst_updater_v0.2.2.zip)
 
-- Extract the "novelyst_updater_v0.2.1" folder from the downloaded zipfile "novelyst_updater_v0.2.1.zip".
+- Extract the "novelyst_updater_v0.2.2" folder from the downloaded zipfile "novelyst_updater_v0.2.2.zip".
 - Move into this new folder and launch **setup.pyw**. This installs the plugin for the local user.
 
 ---

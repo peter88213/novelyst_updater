@@ -41,7 +41,7 @@ except:
         return message
 
 
-class CancelChecking(Exception):
+class CancelCheck(Exception):
     """Exception used for cancelling the update check."""
     pass
 
@@ -111,7 +111,7 @@ class Plugin:
                         found = True
             if not found:
                 messagebox.showinfo(_('Check for updates'), _('No updates available.'))
-        except CancelChecking:
+        except CancelCheck:
             # user pressed the "cancel" button
             pass
 
@@ -123,16 +123,16 @@ class Plugin:
             downloadUrl: str -- Download URL of the latest release in the repository.
         
         Exceptions:
-            raise CancelChecking, if the update check is to be cancelled.
+            raise CancelCheck, if the update check is to be cancelled.
         """
-        text = f'{_("An update is available for")} {repo}. {_("Start your web browser for download?")}'
+        text = f'{_("An update is available for")} {repo}.\n{_("Start your web browser for download?")}'
         answer = messagebox.askyesnocancel(_('Check for updates'), text)
         if answer:
             # user pressed the "Yes" button
             webbrowser.open(downloadUrl)
         elif answer is None:
             # user pressed the "Cancel" button
-            raise CancelChecking
+            raise CancelCheck
 
     def _get_version_info(self, repoName):
         """Return version information and download URL stored in a repository's VERSION file.

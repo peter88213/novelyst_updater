@@ -2,7 +2,7 @@
 
 The [novelyst](https://peter88213.github.io/novelyst/) Python program helps authors organize novels.  
 
-*novelyst_updater* is a plugin providing . 
+*novelyst_updater* is a plugin providing an update ckecker fpr the *novelyst* program and the installed plugins. 
 
 ![Screenshot](Screenshots/screen01.png)
 

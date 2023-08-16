@@ -17,6 +17,17 @@ If [novelyst](https://peter88213.github.io/novelyst/) is installed, the setup sc
 
 ---
 
+## Launch the program
+
+- Open the update ckecker from the main menu: **Tools > Check for updates**.
+- If an update is found, a message pops up. You can choose:
+    - **Yes** starts your web browser with the update URL.
+    - **No** skips this update.
+    - **Cancel** cancels the update check.
+- If no update is found, a message pops up at the end.
+
+---
+
 # License
 
 This is Open Source software, and the *novelyst_updater* plugin is licensed under GPLv3. See the
