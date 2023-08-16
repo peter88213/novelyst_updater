@@ -75,10 +75,13 @@ class Plugin:
     def _check_for_updates(self):
         """Check novelyst and all installed plugins for updates."""
         found = False
+        print('Check for updates')
 
         # Check novelyst.
+        repoName = 'novelyst'
+        print(repoName)
         try:
-            majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info('novelyst')
+            majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
         except:
             messagebox.showerror(_('Check for updates'), _('No online update information for novelyst found.'))
             return
@@ -91,6 +94,7 @@ class Plugin:
 
             # Check installed plugins.
             for repoName in self._ui.plugins:
+                print(repoName)
                 try:
                     # Latest version
                     majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
@@ -159,8 +163,8 @@ class Plugin:
 
     def _update_available(self, latest, current):
         """Return True, if the latest version number is greater than the current one."""
-        print(latest)
-        print(current)
+        print(f'Latest  : {latest}')
+        print(f'Current : {current}')
         if latest[0] > current[0]:
             return True
 
