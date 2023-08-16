@@ -22,7 +22,7 @@ msgstr "Auf Updates prüfen"
 msgid "No updates available."
 msgstr "Keine Updates verfügbar"
 
-msgid "Start your webbrowser for download?"
+msgid "Start your web browser for download?"
 msgstr "Den Webbrowser zum Download starten?"
 
 msgid "novelyst_updater Online help"

@@ -41,6 +41,11 @@ except:
         return message
 
 
+class CancelChecking(Exception):
+    """Exception used for cancelling the update check."""
+    pass
+
+
 class Plugin:
     """Template plugin class.
     
@@ -68,45 +73,69 @@ class Plugin:
         self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self._check_for_updates)
 
     def _check_for_updates(self):
+        """Check novelyst and all installed plugins for updates."""
         found = False
 
         # Check novelyst.
-        majorVersion, minorVersion, patchlevel, downloadLink = self._get_latest_version('https://github.com/peter88213/novelyst/raw/main/VERSION')
-        if self._update_available((majorVersion, minorVersion, patchlevel),
-                                 (self._ui.plugins.majorVersion, self._ui.plugins.minorVersion, self._ui.plugins.patchlevel)):
-            self._download_update('novelyst', downloadLink)
-            found = True
-
-        # Check installed plugins.
-        for moduleName in self._ui.plugins:
-            print(moduleName)
-            majorVersion, minorVersion, patchlevel, downloadLink = self._get_latest_version(f'https://github.com/peter88213/{moduleName}/raw/main/VERSION')
-            print(majorVersion, minorVersion, patchlevel)
-            try:
-                version = self._ui.plugins[moduleName].VERSION
-            except:
-                version = _('unknown')
-            print(version)
-
-        if not found:
-            messagebox.showinfo(_('Check for updates'), _('No updates available.'))
-
-    def _download_update(self, module, url):
-        text = f'{_("An update is available for")} {module}. {_("Start your webbrowser for download?")}'
-        if messagebox.askyesno(_('Check for updates'), text):
-            webbrowser.open(url)
-
-    def _get_latest_version(self, url):
+        majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info('https://github.com/peter88213/novelyst/raw/main/VERSION')
         try:
-            data = urlopen(url)
+            if self._update_available((majorVersion, minorVersion, patchlevel),
+                                     (self._ui.plugins.majorVersion, self._ui.plugins.minorVersion, self._ui.plugins.patchlevel)):
+                self._download_update('novelyst', downloadUrl)
+                found = True
+
+            # Check installed plugins.
+            for moduleName in self._ui.plugins:
+                print(moduleName)
+                majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(f'https://github.com/peter88213/{moduleName}/raw/main/VERSION')
+                print(majorVersion, minorVersion, patchlevel)
+                try:
+                    version = self._ui.plugins[moduleName].VERSION
+                except:
+                    version = _('unknown')
+                print(version)
+
+            if not found:
+                messagebox.showinfo(_('Check for updates'), _('No updates available.'))
+        except CancelChecking:
+            # user pressed the "cancel" button
+            pass
+
+    def _download_update(self, repo, downloadUrl):
+        """Start the web browser with downloadUrl on demand.
+        
+        Positional arguments:
+            repo: str -- Repository name of the app or plugin.
+            downloadUrl: str -- Download URL of the latest release in the repository.
+        
+        Exceptions:
+            raise CancelChecking, if the update check is to be cancelled.
+        """
+        text = f'{_("An update is available for")} {repo}. {_("Start your web browser for download?")}'
+        answer = messagebox.askyesnocancel(_('Check for updates'), text)
+        if answer:
+            # user pressed the "Yes" button
+            webbrowser.open(downloadUrl)
+        elif answer is None:
+            # user pressed the "Cancel" button
+            raise CancelChecking
+
+    def _get_version_info(self, versionUrl):
+        """Return version information and download URL stored in a repository's VERSION file.
+        
+        Positional arguments:
+            versionUrl: str -- URL of the repository's VERSION file.
+        
+        Return major version number, minor version number, patch level, and download URL.
+        
+        """
+        try:
+            data = urlopen(versionUrl)
         except:
             return None, None, None, None
 
         downloadLink = None
         version = None
-        majorVersion = None
-        minorVersion = None
-        patchlevel = None
         lines = data.read().decode('utf-8').split('\n')
         for line in lines:
             try:
@@ -127,6 +156,7 @@ class Plugin:
         return int(majorVersion), int(minorVersion), int(patchlevel), downloadLink
 
     def _update_available(self, latest, current):
+        """Return True, if the latest version number is greater than the current one."""
         print(latest)
         print(current)
         if latest[0] > current[0]:
