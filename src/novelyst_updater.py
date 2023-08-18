@@ -23,6 +23,7 @@ import locale
 import gettext
 from urllib.request import urlopen
 import webbrowser
+import configparser
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -87,8 +88,11 @@ class Plugin:
             return
 
         try:
-            if self._update_available((majorVersion, minorVersion, patchlevel),
-                                     (self._ui.plugins.majorVersion, self._ui.plugins.minorVersion, self._ui.plugins.patchlevel)):
+            latest = (majorVersion, minorVersion, patchlevel)
+            print(f'Latest  : {latest}')
+            current = (self._ui.plugins.majorVersion, self._ui.plugins.minorVersion, self._ui.plugins.patchlevel)
+            print(f'Current : {current}')
+            if self._update_available(latest, current):
                 self._download_update('novelyst', downloadUrl)
                 found = True
 
@@ -99,10 +103,12 @@ class Plugin:
                     # Latest version
                     majorVersion, minorVersion, patchlevel, downloadUrl = self._get_version_info(repoName)
                     latest = (majorVersion, minorVersion, patchlevel)
+                    print(f'Latest  : {latest}')
 
                     # Current version
                     majorVersion, minorVersion, patchlevel = self._ui.plugins[repoName].VERSION.split('.')
                     current = (int(majorVersion), int(minorVersion), int(patchlevel))
+                    print(f'Current : {current}')
                 except:
                     continue
                 else:
@@ -144,27 +150,16 @@ class Plugin:
         """
         versionUrl = f'https://github.com/peter88213/{repoName}/raw/main/VERSION'
         data = urlopen(versionUrl)
-        downloadUrl = None
-        version = None
-        lines = data.read().decode('utf-8').split('\n')
-        for line in lines:
-            try:
-                key, value = line.split('=')
-            except ValueError:
-                pass
-            else:
-                key = key.strip()
-                if key == 'version':
-                    version = value.strip()
-                elif key == 'download_link':
-                    downloadUrl = value.strip()
+        versionInfo = data.read().decode('utf-8')
+        config = configparser.ConfigParser()
+        config.read_string(versionInfo)
+        downloadUrl = config['LATEST']['download_link']
+        version = config['LATEST']['version']
         majorVersion, minorVersion, patchlevel = version.split('.')
         return int(majorVersion), int(minorVersion), int(patchlevel), downloadUrl
 
     def _update_available(self, latest, current):
         """Return True, if the latest version number is greater than the current one."""
-        print(f'Latest  : {latest}')
-        print(f'Current : {current}')
         if latest[0] > current[0]:
             return True
 
