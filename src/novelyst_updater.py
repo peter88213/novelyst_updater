@@ -55,7 +55,7 @@ class Plugin:
     """
     VERSION = '@release'
     NOVELYST_API = '4.36'
-    DESCRIPTION = 'Plugin template'
+    DESCRIPTION = 'Update checker'
     URL = 'https://peter88213.github.io/novelyst_updater'
     _HELP_URL = 'https://peter88213.github.io/novelyst_updater/usage'
 

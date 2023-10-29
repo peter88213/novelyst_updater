@@ -5,6 +5,12 @@
 ## Changelog
 
 
+### v0.2.4
+
+- Fix message text.
+
+Compatibility: novelyst v4.36 API
+
 ### v0.2.3
 
 - Refactor: use configparser.
