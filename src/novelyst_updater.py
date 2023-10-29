@@ -54,8 +54,8 @@ class Plugin:
         install(ui) -- Install the plugin and extend the novelyst user interface.
     """
     VERSION = '@release'
-    NOVELYST_API = '4.36'
-    DESCRIPTION = 'Plugin template'
+    NOVELYST_API = '5.0'
+    DESCRIPTION = 'Update checker'
     URL = 'https://peter88213.github.io/novelyst_updater'
     _HELP_URL = 'https://peter88213.github.io/novelyst_updater/usage'
 
