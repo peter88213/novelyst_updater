@@ -1,13 +1,13 @@
-"""Build a noveltree_updater plugin.
+"""Build a nv_updater plugin.
         
 In order to distribute a single script without dependencies, 
 this script "inlines" all modules imported from the novxlib package.
 
 The novxlib project (see https://github.com/peter88213/novxlib)
-must be located on the same directory level as the noveltree_updater project. 
+must be located on the same directory level as the nv_updater project. 
 
 Copyright (c) 2023 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree_updater
+For further information see https://github.com/peter88213/nv_updater
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
@@ -18,7 +18,7 @@ import inliner
 SRC = '../src/'
 BUILD = '../test/'
 SOURCE_FILE = f'{SRC}nv_updater.py'
-TARGET_FILE = f'{BUILD}noveltree_updater.py'
+TARGET_FILE = f'{BUILD}nv_updater.py'
 
 os.makedirs(BUILD, exist_ok=True)
 

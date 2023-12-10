@@ -1,4 +1,4 @@
-[Project homepage](https://peter88213.github.io/noveltree_updater) > Instructions for use
+[Project homepage](https://peter88213.github.io/nv_updater) > Instructions for use
 
 --- 
 
@@ -8,7 +8,7 @@ A [noveltree](https://peter88213.github.io/noveltree/) plugin providing an *on-d
 
 # Installation
 
-If [noveltree](https://peter88213.github.io/noveltree/) is installed, the setup script auto-installs the *noveltree_updater* plugin in the *noveltree* plugin directory.
+If [noveltree](https://peter88213.github.io/noveltree/) is installed, the setup script auto-installs the *nv_updater* plugin in the *noveltree* plugin directory.
 
 
 ---
@@ -28,7 +28,7 @@ If [noveltree](https://peter88213.github.io/noveltree/) is installed, the setup 
 
 ### Important
 
-The *noveltree_updater* plugin only initiates the download process via the system web browser. 
+The *nv_updater* plugin only initiates the download process via the system web browser. 
 If a download directory is preset, all zip files with the downloaded releases will end up there. 
 You then perform the actual installation manually as usual.
 
@@ -36,6 +36,6 @@ You then perform the actual installation manually as usual.
 
 # License
 
-This is Open Source software, and the *noveltree_updater* plugin is licensed under GPLv3. See the
+This is Open Source software, and the *nv_updater* plugin is licensed under GPLv3. See the
 [GNU General Public License website](https://www.gnu.org/licenses/gpl-3.0.en.html) for more
-details, or consult the [LICENSE](https://github.com/peter88213/noveltree_updater/blob/main/LICENSE) file.
+details, or consult the [LICENSE](https://github.com/peter88213/nv_updater/blob/main/LICENSE) file.

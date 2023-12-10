@@ -2,7 +2,7 @@
 
 Requires Python 3.6+
 Copyright (c) 2023 Peter Triesberger
-For further information see https://github.com/peter88213/noveltree_updater
+For further information see https://github.com/peter88213/nv_updater
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ except:
     # Fallback for old Windows versions.
     CURRENT_LANGUAGE = locale.getdefaultlocale()[0][:2]
 try:
-    t = gettext.translation('noveltree_updater', LOCALE_PATH, languages=[CURRENT_LANGUAGE])
+    t = gettext.translation('nv_updater', LOCALE_PATH, languages=[CURRENT_LANGUAGE])
     _ = t.gettext
 except:
 
@@ -54,10 +54,10 @@ class Plugin:
         install(ui) -- Install the plugin and extend the noveltree user interface.
     """
     VERSION = '@release'
-    NOVELYST_API = '5.0'
+    NOVELYST_API = '0.1'
     DESCRIPTION = 'Update checker'
-    URL = 'https://peter88213.github.io/noveltree_updater'
-    _HELP_URL = 'https://peter88213.github.io/noveltree_updater/usage'
+    URL = 'https://peter88213.github.io/nv_updater'
+    _HELP_URL = 'https://peter88213.github.io/nv_updater/usage'
 
     def install(self, ui):
         """Install the plugin and extend the noveltree user interface.
@@ -68,7 +68,7 @@ class Plugin:
         self._ui = ui
 
         # Add an entry to the Help menu.
-        self._ui.helpMenu.add_command(label=_('noveltree_updater Online help'), command=lambda: webbrowser.open(self._HELP_URL))
+        self._ui.helpMenu.add_command(label=_('nv_updater Online help'), command=lambda: webbrowser.open(self._HELP_URL))
 
         # Add an entry to the Tools menu.
         self._ui.toolsMenu.add_command(label=_('Check for updates'), command=self._check_for_updates)

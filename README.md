@@ -1,8 +1,8 @@
-# noveltree_updater
+# nv_updater
 
 An update checker plugin for [noveltree](https://peter88213.github.io/noveltree)
 
-For more information, see the [project homepage](https://peter88213.github.io/noveltree_updater) with description and download instructions.
+For more information, see the [project homepage](https://peter88213.github.io/nv_updater) with description and download instructions.
 
 ## Feedback? Ideas? Feature requests?
 
@@ -22,7 +22,7 @@ For English, this is, for example, `en`, for German, it is `de`.
 
 A "message catalog" is a dictionary for the plugin's messages and menu entries.
 
-For creating a message catalog, you download a template with all English messages from [here](https://github.com/peter88213/noveltree_updater/blob/main/i18n/messages.pot). 
+For creating a message catalog, you download a template with all English messages from [here](https://github.com/peter88213/nv_updater/blob/main/i18n/messages.pot). 
 
 
 Rename `messages.pot` to `<your language code>.po`, then give some specific information in the header data by modifying the following lines:
@@ -53,12 +53,12 @@ Before you distribute your translations, you can convert and install the message
 The plugin needs the message catalog in binary format. This is easily achieved using the **msgfmt.py** converter script. 
 You find it in your Python installation, in the **Tools/i18n** subdirectory. If not, you can download the code from [here](https://github.com/python/cpython/blob/main/Tools/i18n/msgfmt.py)
 
-Name the binary file **noveltree_updater.mo**. 
+Name the binary file **nv_updater.mo**. 
 
 
 ### Install your translation for testing
 
-Add a subdirectory tree to **noveltree/locale**, and place *noveltree_updater.mo* there, like this:
+Add a subdirectory tree to **noveltree/locale**, and place *nv_updater.mo* there, like this:
 
 ```
 <your home directory>
@@ -67,14 +67,14 @@ Add a subdirectory tree to **noveltree/locale**, and place *noveltree_updater.mo
         └── locale/
             └─ <language code>/
                └─ LC_MESSAGES/
-                  └─ noveltree_updater.mo
+                  └─ nv_updater.mo
 ```
 
 Then start *noveltree* and see whether your translation works. 
 
 **NOTE:** At startup, *noveltree* tries to load a message dictionary that fits to the system language. If it doesn't find a matching language code in the *locale* directory, it uses English as default language. 
 
-**HINT:** *noveltree_updater* comes with German translations. Look at the `de` directory tree, if you need an example. 
+**HINT:** *nv_updater* comes with German translations. Look at the `de` directory tree, if you need an example. 
 
 
 ### Contribute your translations
@@ -98,6 +98,6 @@ See https://github.com/peter88213/novxlib/blob/main/docs/conventions.md
 
 ## License
 
-This is Open Source software, and the *noveltree_updater* plugin is licensed under GPLv3. See the
+This is Open Source software, and the *nv_updater* plugin is licensed under GPLv3. See the
 [GNU General Public License website](https://www.gnu.org/licenses/gpl-3.0.en.html) for more
-details, or consult the [LICENSE](https://github.com/peter88213/noveltree_updater/blob/main/LICENSE) file.
+details, or consult the [LICENSE](https://github.com/peter88213/nv_updater/blob/main/LICENSE) file.
