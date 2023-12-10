@@ -1,10 +1,10 @@
-# novelyst_updater Dictionary
+# nv_updater Dictionary
 # Copyright (C) 2023 Peter Triesberger
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
-"POT-Creation-Date: 2023-10-29 20:28:05\n"
+"Project-Id-Version: 1.0.1\n"
+"POT-Creation-Date: 2023-12-10 14:35:27\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Check for updates"
 msgstr ""
 
-msgid "No online update information for novelyst found."
+msgid "No online update information for noveltree found."
 msgstr ""
 
 msgid "No updates available."
@@ -29,5 +29,5 @@ msgstr ""
 msgid "Start your web browser for download?"
 msgstr ""
 
-msgid "novelyst_updater Online help"
+msgid "noveltree_updater Online help"
 msgstr ""

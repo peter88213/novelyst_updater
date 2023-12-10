@@ -1,4 +1,4 @@
 /build/
 *.pyc
 *.bak
-/test/novelyst_updater.py
+/test/noveltree_updater.py

@@ -9,7 +9,7 @@
 
 - Refactor: use configparser.
 
-Compatibility: novelyst v4.36 API
+Compatibility: noveltree v4.36 API
 
 ### v0.2.2
 
@@ -18,23 +18,23 @@ Compatibility: novelyst v4.36 API
 - Provide instructions for use.
 - Update documentation.
 
-Compatibility: novelyst v4.36 API
+Compatibility: noveltree v4.36 API
 
 ### v0.2.1
 
 - Add debugging code.
 
-Compatibility: novelyst v4.36 API
+Compatibility: noveltree v4.36 API
 
 ### v0.2.0
 
-- Check novelyst and installed plugins for updates.
+- Check noveltree and installed plugins for updates.
 - Allow the user to cancel the update check.
 
-Compatibility: novelyst v4.36 API
+Compatibility: noveltree v4.36 API
 
 ### v0.1.0
 
-- Check novelyst for updates.
+- Check noveltree for updates.
 
-Compatibility: novelyst v4.36 API
+Compatibility: noveltree v4.36 API

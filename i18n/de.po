@@ -1,11 +1,11 @@
-# novelyst_updater Dictionary (English-German)
+# nv_updater Dictionary (English-German)
 # Copyright (C) 2022 Peter Triesberger
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
-"POT-Creation-Date: 2023-10-29 20:28:05\n"
-"PO-Revision-Date: 2023-10-29 20:28:05\n"
+"Project-Id-Version: 1.0.1\n"
+"POT-Creation-Date: 2023-12-10 14:35:27\n"
+"PO-Revision-Date: 2023-12-10 14:35:27\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -19,8 +19,8 @@ msgstr "Ein Update ist verfügbar für"
 msgid "Check for updates"
 msgstr "Auf Updates prüfen"
 
-msgid "No online update information for novelyst found."
-msgstr "Keine Online-Updateinformationen für novelyst gefunden."
+msgid "No online update information for noveltree found."
+msgstr "Keine Online-Updateinformationen für noveltree gefunden."
 
 msgid "No updates available."
 msgstr "Keine Updates verfügbar"
@@ -28,6 +28,6 @@ msgstr "Keine Updates verfügbar"
 msgid "Start your web browser for download?"
 msgstr "Den Webbrowser zum Download starten?"
 
-msgid "novelyst_updater Online help"
-msgstr "novelyst_updater Online-Hilfe"
+msgid "noveltree_updater Online help"
+msgstr "noveltree_updater Online-Hilfe"
 
