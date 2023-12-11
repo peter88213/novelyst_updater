@@ -63,7 +63,7 @@ class Plugin:
         """Install the plugin and extend the noveltree user interface.
         
         Positional arguments:
-            ui -- reference to the NovelystTk instance of the application.
+            ui -- reference to the NoveltreeUi instance of the application.
         """
         self._ui = ui
 
