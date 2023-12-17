@@ -48,23 +48,20 @@ class CancelCheck(Exception):
 
 
 class Plugin:
-    """Template plugin class.
-    
-    Public methods:
-        install(ui) -- Install the plugin and extend the noveltree user interface.
-    """
+    """Template plugin class."""
     VERSION = '@release'
-    NOVELYST_API = '0.1'
+    NOVELYST_API = '0.6'
     DESCRIPTION = 'Update checker'
     URL = 'https://peter88213.github.io/nv_updater'
     _HELP_URL = 'https://peter88213.github.io/nv_updater/usage'
 
-    def install(self, ui):
+    def install(self, controller, ui):
         """Install the plugin and extend the noveltree user interface.
         
         Positional arguments:
             ui -- reference to the NoveltreeUi instance of the application.
         """
+        self._controller = controller
         self._ui = ui
 
         # Add an entry to the Help menu.
@@ -90,14 +87,14 @@ class Plugin:
         try:
             latest = (majorVersion, minorVersion, patchlevel)
             print(f'Latest  : {latest}')
-            current = (self._ui.plugins.majorVersion, self._ui.plugins.minorVersion, self._ui.plugins.patchlevel)
+            current = (self._controller.plugins.majorVersion, self._controller.plugins.minorVersion, self._controller.plugins.patchlevel)
             print(f'Current : {current}')
             if self._update_available(latest, current):
                 self._download_update('noveltree', downloadUrl)
                 found = True
 
             # Check installed plugins.
-            for repoName in self._ui.plugins:
+            for repoName in self._controller.plugins:
                 print(repoName)
                 try:
                     # Latest version
@@ -106,7 +103,7 @@ class Plugin:
                     print(f'Latest  : {latest}')
 
                     # Current version
-                    majorVersion, minorVersion, patchlevel = self._ui.plugins[repoName].VERSION.split('.')
+                    majorVersion, minorVersion, patchlevel = self._controller.plugins[repoName].VERSION.split('.')
                     current = (int(majorVersion), int(minorVersion), int(patchlevel))
                     print(f'Current : {current}')
                 except:

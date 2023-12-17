@@ -24,9 +24,7 @@ os.makedirs(BUILD, exist_ok=True)
 
 
 def main():
-    inliner.run(SOURCE_FILE, TARGET_FILE, 'nvupdaterlib', '../../novelyst_updater/src/')
-    inliner.run(TARGET_FILE, TARGET_FILE, 'noveltreelib', '../../noveltree/src/')
-    inliner.run(TARGET_FILE, TARGET_FILE, 'novxlib', '../../novxlib-Alpha/src/')
+    inliner.run(SOURCE_FILE, TARGET_FILE, 'novxlib', '../../novxlib-Alpha/src/')
     print('Done.')
 
 
