@@ -16,14 +16,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 """
-import sys
-import os
-from tkinter import messagebox
-import locale
+import configparser
 import gettext
+import locale
+import os
+import sys
+from tkinter import messagebox
 from urllib.request import urlopen
 import webbrowser
-import configparser
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -55,7 +55,7 @@ class Plugin:
     URL = 'https://peter88213.github.io/nv_updater'
     _HELP_URL = 'https://peter88213.github.io/nv_updater/usage'
 
-    def install(self, controller, ui):
+    def install(self, controller, ui, prefs):
         """Install the plugin and extend the noveltree user interface.
         
         Positional arguments:
