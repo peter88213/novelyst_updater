@@ -50,7 +50,7 @@ class CancelCheck(Exception):
 class Plugin:
     """Template plugin class."""
     VERSION = '@release'
-    NOVELYST_API = '0.6'
+    NOVELYST_API = '0.7'
     DESCRIPTION = 'Update checker'
     URL = 'https://peter88213.github.io/nv_updater'
     _HELP_URL = 'https://peter88213.github.io/nv_updater/usage'
