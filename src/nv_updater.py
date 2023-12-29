@@ -61,7 +61,7 @@ class Plugin:
         Positional arguments:
             ui -- reference to the NoveltreeUi instance of the application.
         """
-        self._controller = controller
+        self._ctrl = controller
         self._ui = ui
 
         # Add an entry to the Help menu.
@@ -87,14 +87,14 @@ class Plugin:
         try:
             latest = (majorVersion, minorVersion, patchlevel)
             print(f'Latest  : {latest}')
-            current = (self._controller.plugins.majorVersion, self._controller.plugins.minorVersion, self._controller.plugins.patchlevel)
+            current = (self._ctrl.plugins.majorVersion, self._ctrl.plugins.minorVersion, self._ctrl.plugins.patchlevel)
             print(f'Current : {current}')
             if self._update_available(latest, current):
                 self._download_update('noveltree', downloadUrl)
                 found = True
 
             # Check installed plugins.
-            for repoName in self._controller.plugins:
+            for repoName in self._ctrl.plugins:
                 print(repoName)
                 try:
                     # Latest version
@@ -103,7 +103,7 @@ class Plugin:
                     print(f'Latest  : {latest}')
 
                     # Current version
-                    majorVersion, minorVersion, patchlevel = self._controller.plugins[repoName].VERSION.split('.')
+                    majorVersion, minorVersion, patchlevel = self._ctrl.plugins[repoName].VERSION.split('.')
                     current = (int(majorVersion), int(minorVersion), int(patchlevel))
                     print(f'Current : {current}')
                 except:
