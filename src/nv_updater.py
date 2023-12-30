@@ -55,14 +55,14 @@ class Plugin:
     URL = 'https://peter88213.github.io/nv_updater'
     _HELP_URL = 'https://peter88213.github.io/nv_updater/usage'
 
-    def install(self, model, ui, controller, prefs):
+    def install(self, model, view, controller, prefs):
         """Install the plugin and extend the noveltree user interface.
         
         Positional arguments:
-            ui -- reference to the NoveltreeUi instance of the application.
+            view -- reference to the NoveltreeUi instance of the application.
         """
         self._ctrl = controller
-        self._ui = ui
+        self._ui = view
 
         # Add an entry to the Help menu.
         self._ui.helpMenu.add_command(label=_('nv_updater Online help'), command=lambda: webbrowser.open(self._HELP_URL))
