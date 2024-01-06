@@ -58,16 +58,15 @@ Name the binary file **nv_updater.mo**.
 
 ### Install your translation for testing
 
-Add a subdirectory tree to **noveltree/locale**, and place *nv_updater.mo* there, like this:
+Add a subdirectory tree to **~/noveltree/locale**, and place *nv_updater.mo* there, like this:
 
 ```
 <your home directory>
-└── .novxlib/
-    └── noveltree/
-        └── locale/
-            └─ <language code>/
-               └─ LC_MESSAGES/
-                  └─ nv_updater.mo
+└── .noveltree/
+    └── locale/
+        └─ <language code>/
+           └─ LC_MESSAGES/
+              └─ nv_updater.mo
 ```
 
 Then start *noveltree* and see whether your translation works. 
